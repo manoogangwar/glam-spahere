@@ -1,0 +1,49 @@
+
+{%extends 'fn_app/html/base.html'%}
+
+{%block content%}
+{% load static %}
+
+<style>
+ .card{transition: all 0.3s;
+    &:hover{
+    transform: scale(1.07);}
+   }
+   .ff{
+    margin: 30px 100px;
+    .card{
+      height: 700px;
+    }
+   }
+</style>
+<section style="height: 900px; background-color: #fdf8f0;">
+  
+   <div class="container-fluid " >
+<h2 style=" text-align: center; color: #443d39; font-family: DM Serif Display; font-size: 3rem; ">NEWS </h2></div>
+<hr>
+<div class="ff">
+{% for n in news_key %}
+<div style="float: left; margin-left: 5%; margin-bottom: 2%; ">
+   <div class="card" style=" width: 18rem; margin-top: 5%; margin-left: 10%;" >
+      <img src="/media/{{n.photo}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title font-weight-bold" style="font-family: fantasy;">{{n.news_headline}}</h5>
+        <p class="card-text">{{n.news_content}}</p>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Date: {{n.date}}</li>
+          <li class="list-group-item"></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+    {%endfor%}
+  </div>
+  
+</section>
+ {% endblock content%}
+   
+    
+        
+ 
+
+  

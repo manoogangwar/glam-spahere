@@ -1,0 +1,62 @@
+
+
+{%extends 'fn_app/html/base.html'%}
+
+
+{%block content%}
+<div class="skjdkhj" style="position: absolute; left: 10%;top: 20%; height: 500px; overflow: scroll;">
+    <h1>Designers</h1>
+<div class="d-flex mx-auto mt-5" style="flex-direction: column; align-items: center;">
+    {% for m in msg %}
+    <div onclick="window.location.href='{% url 'designer_messages'%}?q={{m.user.u_ID}}';" class="cards p-2 " style="border-radius: 2rem;width: 300px; ">
+        <img src="{{m.user.u_pic.url}}" style="height: 70px; width: 70px; border-radius: 50%;" alt="">
+        <a href="{% url 'designer_messages'%}?q= {{m.user.u_ID}}" class="mt-3 ms-3">{{ m.user.u_name }}</a>
+    </div>
+{% endfor %}
+
+</div>
+</div>
+
+
+
+
+  
+<style>
+    .scrl::-webkit-scrollbar{
+    display: none !important;
+}
+
+</style>
+    
+    <div class="dc d-flex justify-content-center">
+        <div class="frm scrl">
+            <div class="d-flex p-0 mb-4">
+                <img src="{{receiver.u_pic.url}}" style="height: 70px; width: 70px; border-radius: 50%;" alt="">
+                <h3 class="ms-3 mt-2 beige">{{receiver.u_name}}</h3>
+            </div>
+            <div class="mb-4 px-2" style="overflow: scroll; scroll-behavior: auto; height: 300px !important;">
+                {% for message in chat_messages %}
+                    {% if message.designer_message%}   
+                    <p class="  text-end  m-0" style="font-size: 10px;">{{message.date}}</p>
+                    <p class="text-end"> <strong>You:</strong>{{ message.designer_message }}</p>
+                   {% else %}
+                   <p class=" m-0" style="font-size: 10px;">{{message.date}}</p>
+    
+                   <p><strong>{{message.user.u_name}} </strong> {{ message.user_message }}</p>
+               
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <form method="post" >
+                {% csrf_token %}
+                <div class="form-floating">
+                    <textarea class="form-control" id="message" name="message"></textarea>
+                    <label class="form-label" for="message">Message:</label><br>
+                    </div>
+                    <button class="btna bg-danger d-block mx-auto w-75" style="border-radius: 1rem;" type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+
+{%endblock content%}

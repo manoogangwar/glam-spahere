@@ -1,0 +1,198 @@
+{% extends 'fn_app/html/base.html' %}
+{% block content %}
+    {% load static %}
+<style>
+
+    #abc
+    {
+        background-color: #fdf8f0;
+    min-height: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    .box2
+    {
+    min-height: 200px;
+    width: 1200px;
+margin: 0px 300px;
+    text-align: center;
+    
+    }
+    }
+   #aboutus
+   {
+    background-color: #fdf8f0;
+    display: flex;
+    flex-wrap: wrap;
+    
+    justify-content: center;
+    .box1{
+    font-family: 'Sedan SC', sans-serif;
+ min-height: 200px;
+    width: 100%;
+    
+} 
+}
+
+   .p
+   {
+    font-size: 1.5rem;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    text-align: center;
+   
+   }
+   .h1{
+    font-size: 3rem;
+    font-family: 'Sedan SC', sans-serif;
+    text-align: center;
+   }
+.h2
+{
+    font-size: 2.7rem;
+    font-family: 'Sedan SC', sans-serif;
+    margin: 60px;
+    
+}
+#cd
+{
+background-color: #fdf8f0;
+min-height: 700px;
+display: flex;
+flex-wrap: wrap;
+
+
+}
+.box4{
+    
+font-family: 'Sedan SC', sans-serif;
+min-height: 700px;
+width: 900px;
+margin: 0px 150px;
+}
+.box5{
+    .img {
+    background-position:top;
+    background-size: cover;
+    min-height: 550px;
+    width: 700px;
+}
+
+}
+
+.ce{
+    margin: 50px 50px;
+    display: flex;
+    flex-direction: column;
+  
+
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 2%;
+}
+
+.card {
+  flex: 1 0 300px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  
+  text-align: center;
+}
+.card :hover{
+    transform: scale(1.05);
+    transition: 0.5s;
+
+
+}
+.ppp::first-letter {
+  text-transform: uppercase;
+  font-size: 2em;
+  }
+ 
+
+
+</style>
+<body>
+    
+
+
+    <section id="abc">
+    
+        <div class="box2" style="background-color:#fdf8f0">
+            <h2 class="h2" style="color: #ca0202;font-family:Carter One;">"Style is a way to say who you are without having to speak." — Rachel Zoe</h2>
+            <p class="p"> Welcome to Glam Sphere, where style meets passion.</p>
+        </div>
+        </section>
+        <section id="cd">
+            <div class="box5">
+                <img class="img" src="{% static 'fn_app/images/gs2.png'%}" alt="">
+            </div>
+            <div class="box4">
+              <div class="ce">
+                <p style="font-style: italic;">OUR STORY</p>
+                <h1 class="sedan" >Fashion is about passion, not just clothes</h1>
+                <p class="ppp" style="font-family: 'Times New Roman', Times, serif; font-size: larger; margin-top: 1%;">Founded in 2024 by Munendra Gangwar & Archita Singh, Glam Sphere was born out of desire to create a more inclusive and equitable fashion landscape.Frustrated by the lack of opportunities available to emerging designers, we set out to build a platform that celebrates creativity, fosters innovation, and supports the next generation of fashion pioneers. Our website has evolved into a destination for fashion enthusiasts seeking curated collections, unique designs, and a community that shares their love for style.</p>
+                <hr>
+                <p style="font-style: italic;">OUR MISSION</p>
+                <p class="" style="font-family: 'Times New Roman', Times, serif; font-size: larger; margin-top: 1%;" >We believe that creativity knows no bounds and that every designer deserves a chance to shine. Our mission is simple: to provide a platform where emerging and underrepresented fashion designers can showcase their talent, reach a wider audience, and thrive in an industry that often overlooks their potential. We're here to challenge the status quo, break down barriers, and champion diversity and inclusivity in fashion.</p>
+                 
+              </div>
+                
+              
+            </div>
+       
+        
+          </section>
+        
+
+<section id="aboutus">
+<div class="box1">
+    <p class="p">MEET OUR TEAM</p>
+    <h1 class="h1">We serve uniqueness because you are unique to us</h1>
+    <hr>
+</div>
+<br>
+</section>
+<section id="aboutus" class="">
+   
+        {%for d in obj%}
+        <div class="cardss">
+        <div class="imdiv">
+            <img src="{{d.d_pic.url}}" alt="">
+        </div>
+        <h3 class="text-center my-3">{{d.d_name}}</h3>
+    </div>
+    {%endfor%}
+</section>
+
+
+
+
+<script>
+    function getRandomColor() {
+        var letters = 'CDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 4)];
+        }
+        return color;
+    }
+
+    var cards = document.querySelectorAll('.cardss');
+    cards.forEach(function(card) {
+        var color = getRandomColor();
+        card.style.backgroundColor = color;
+
+        card.addEventListener('mouseover', function() {
+            this.style.boxShadow = '5px 5px 40px 10px ' + color;
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.boxShadow = '5px 5px 30px 0 ' + "#999999"; 
+        });
+    });
+</script>'
+
+{% endblock content %}

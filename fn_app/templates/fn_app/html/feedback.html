@@ -1,0 +1,277 @@
+{%extends 'fn_app/html/base.html'%}
+
+{%block content%}
+{% load static %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<style>
+h4{
+  font-family: 'Times New Roman', Times, serif;
+  justify-content: center;
+  color: black;
+  margin-top: 10px;
+  margin-bottom: 0;
+  
+    }
+    .emoji{
+          font-size: 1.4rem;
+          display: flex;
+          justify-content: center;
+          cursor: pointer;
+          transition: transform .2s ease-in;
+    }
+h2
+{
+  font-family: 'Times New Roman';
+  justify-content: center;
+  color: black;
+  margin-bottom: 50px;
+}
+.form-container {
+  
+  height: 600px;
+  width: 400px;
+  border-radius: 8px;
+  padding: 30px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: auto;
+}
+
+.form-container::before {
+  content: "";
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: url('your-image-url.jpg') no-repeat center center fixed;
+  background-size: cover;
+  filter: blur(7px);
+  -webkit-filter: blur(7px);
+  z-index: -1;
+}
+
+/* css for input  */
+.container {
+  
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  position: relative;
+  color: rgb(12, 12, 12);
+  margin: 0 auto;
+}
+
+.container .label {
+  font-size: 15px;
+  position: absolute;
+  top: 13px;
+  transition: 0.3s;
+  pointer-events: none;
+ margin-left: 10px;
+}
+
+.input {
+  width: 300px;
+  height: 45px;
+  border: none;
+  outline: none;
+ margin-bottom: 25px;
+  border-radius: 6px;
+  color: #0c0c0c;
+  font-size: 15px;
+  background-color: transparent;
+  box-shadow: 3px 3px 10px rgb(19, 18, 18),
+  -1px -1px 6px rgba(223, 217, 217, 0.4);
+}
+
+.input:focus {
+  border: 2px solid transparent;
+  color: #770000;
+  box-shadow: 3px 3px 10px rgb(15, 15, 15),
+  -1px -1px 6px rgba(150, 147, 147, 0.4),
+  inset 3px 3px 10px rgb(15, 15, 15),
+  inset -1px -1px 6px rgba(255, 255, 255, 0.4);
+}
+
+.container .input:valid ~ .label,
+.container .input:focus ~ .label {
+  transition: 0.3s;
+  padding-left: 2px;
+  transform: translateY(-35px);
+}
+
+.container .input:valid,
+.container .input:focus {
+  box-shadow: 3px 3px 10px rgb(253, 250, 250),
+  -1px -1px 6px rgba(255, 255, 255, 0.4),
+  inset 3px 3px 10px rgb(243, 238, 238),
+  inset -1px -1px 6px rgba(255, 255, 255, 0.4);
+}
+
+/* rating css */
+.rating {
+  display: flex;
+  justify-content: center;
+ 
+}
+
+.rating:not(:checked) > input {
+  position: absolute;
+  appearance: none;
+ 
+}
+
+.rating:not(:checked) > label {
+  float: right;
+  cursor: pointer;
+  font-size: 40px;
+  color: #666;
+}
+
+.rating:not(:checked) > label:before {
+  content: '★';
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+  color: #e58e09;
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  color: #ff9e0b;
+}
+
+
+/* submit button css */
+
+
+/* header css */
+#feedback-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+}
+.btn {
+  letter-spacing: 1px;
+  font-family: 'Poppins';
+    border-radius: 50px; 
+    height: 40px;
+    width: 100px;
+    margin: 40px 110px;
+    font-size: large;
+    display: block;
+    transition: all 0.4s;
+    border: none;
+    color:#fdf8f0;;
+    background-color:   rgb(196, 68, 68);
+   
+    &:hover{
+        background-color: black;
+        color: white;
+    }
+}
+</style>
+
+
+  
+
+  <section style="height: 700px; background-color: #fdf8f0;">
+    
+  <div class="form-container " >
+    
+    <form method="post" action="/feedback/">
+      {% csrf_token %}
+      {%for m in messages%}
+      <script> alert ("{{m}}")</script>
+         {%endfor%}
+      <h2>Feedback form</h2>
+      <div class="container mb-4">
+        <input required="" type="text" name="name" class="input" oninput="validateInput(event)">
+        <label class="label">Username</label>
+      </div>
+      <div class="container mb-4">
+        <input required="" type="email" name="email" class="input">
+        <label class="label">Email</label>
+      </div>
+      <div class="container mb-4">
+        <input required="" type="text" name="remark" class="input" oninput="validateInput(event)">
+        <label class="label">Enter Remark</label>
+      </div>
+      <!-- <div style="margin-bottom: 5px;">
+        <h4>How would you like to rate your experience?</h4>
+        <div class="rating">
+          <input value="⭐⭐⭐⭐⭐" name="rating" id="⭐" type="radio">
+          <label title="text" for="star5"></label>
+          <input value="⭐⭐⭐⭐" name="rating" id="⭐⭐" type="radio">
+          <label title="text" for="star4"></label>
+          <input  checked value="⭐⭐⭐" name="rating" id="⭐⭐⭐" type="radio">
+          <label title="text" for="star3"></label>
+          <input value="⭐⭐" name="rating" id="⭐⭐⭐⭐" type="radio">
+          <label title="text" for="star2"></label>
+          <input value="⭐" name="rating" id="⭐⭐⭐⭐⭐" type="radio">
+          <label title="text" for="star1"></label>
+        </div>
+      </div> -->
+
+      <div class="form-group mb-3">
+        <label for="rating">How would you like to rate your experience?</label>
+        <div class="emoji mt-1">
+          <input type="radio" id="rating-1" name="rating" value="⭐" required>
+          <!-- <span>😡</span> -->
+          <div>😡</div>
+          <input type="radio" id="rating-2" name="rating" value="⭐⭐">
+          <!-- <span>😠</span> -->
+          <div>😠</div>
+          <input type="radio" id="rating-3" name="rating" value="⭐⭐⭐">
+          <!-- <span>😐</span> -->
+          <div>😐</div>
+          <input type="radio" id="rating-4" name="rating" value="⭐⭐⭐⭐">
+          <!-- <span>😄</span> -->
+          <div>😄</div>
+          <input type="radio" id="rating-5" name="rating" value="⭐⭐⭐⭐⭐" required>
+          <!-- <span>😍</span> -->
+          <div>😍</div>
+        </div>
+      </div>
+
+
+      <button class="btn" type="submit">SUBMIT</button>
+    </form>
+  </div>
+
+</section>
+<script>
+  function validateInput(event) {
+  const input = event.target.value;
+  const regex = /^[a-zA-Z .]*$/; // Regular expression to match only characters
+  if (!regex.test(input)) {
+  // If input contains anything other than characters, remove them
+  event.target.value = input.replace(/[^a-zA-Z]/g, '');
+  //alert("only aplhabets allowed")
+  alert("Only Alphabets are allowed");
+  }
+  }
+  </script>
+
+<script>const rating = document.querySelector('input[name="rating"]:checked').value;</script>
+<script>
+  if ( window.history.replaceState ) {
+    window.history.replaceState( null, null, window.location.href );
+  }
+  </script>
+{%endblock content%}
+
+
+
+
+
+

@@ -1,0 +1,618 @@
+
+{%extends 'fn_app/html/base.html'%}
+
+
+{%block content%}
+{% load static %}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(document).ready(function(){ 
+        $("#des_id").change(function(){
+        var account_id = $(this).val();
+        
+        $.ajax({
+            url: "/checkId/",
+            data:{
+                'des_id': account_id // here des_id is any variable
+            },
+            dataType: 'json',
+            success: function(response_data){
+                if(response_data.status){
+                    alert("Designer id already exists");
+                    document.getElementById("des_id").value=""                     
+                }
+                }
+                });
+        })
+    }) 
+    </script>
+
+    <!-- <script>
+        function checkPass()
+        {
+        var password=document.getElementById("pwd").value
+        if (passLength(password)==false)
+        {
+            alert("password must be >=8 character")
+            return false
+        }
+        return true
+    }
+    </script> -->
+
+<style>
+
+
+body {
+    
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #ffffff;
+}
+.contain {
+    margin-top: 3%;
+    margin-left: 9%;
+    position: relative;
+    width: 80vw;
+    height: 110vh;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+.contain::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-45deg, rgba(177, 174, 159, 0.883), #000000);
+    z-index: 6;
+    transform: translateX(100%);
+    transition: 1s ease-in-out;
+}
+.signin-signup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 5;
+}
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 40%;
+    height: fit-content;
+    min-width: 238px;
+    padding: 0 10px;
+}
+form.sign-in-form {
+    opacity: 1;
+    transition: 0.5s ease-in-out;
+    transition-delay: 1s;
+}
+form.sign-up-form {
+    opacity: 0;
+    transition: 0.5s ease-in-out;
+    transition-delay: 1s;
+}
+.title {
+    font-size: 35px;
+    color: #3b3b2a;
+    margin-bottom: 10px;
+}
+.input-field {
+    width: 100%;
+    height: 50px;
+    background: #f0f0f0;
+    margin: 10px 0;
+    border: 2px solid #424142;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    padding: 25px;
+}
+.input-field i {
+    flex: 1;
+    text-align: center;
+    color: #666;
+    font-size: 18px;
+}
+.input-field input {
+    flex: 5;
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 18px;
+    font-weight: 600;
+    color: #444;
+}
+.btn {
+    width: 150px;
+    height: 50px;
+    border: none;
+    border-radius: 50px;
+    background: #0a0a0ae3;
+    color: #fff;
+    font-weight: 600;
+    margin: 10px 0;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.btn:hover {
+    background: #ece3e3;
+}
+.social-text {
+    margin: 10px 0;
+    font-size: 16px;
+}
+.social-media {
+    margin-bottom: 2%;
+    display: flex;
+    justify-content: center;
+}
+.social-icon {
+    
+    height: 45px;
+    width: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #444;
+    border: 1px solid #444;
+    border-radius: 50px;
+    margin: 0 5px;
+}
+a {
+    text-decoration: none;
+}
+.social-icon:hover {
+    color: #797579;
+    border-color: #727072;
+}
+.panels-contain {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 35%;
+    min-width: 238px;
+    padding: 0 10px;
+    text-align: center;
+    z-index: 6;
+}
+.left-panel {
+    pointer-events: none;
+}
+.content {
+    color: #fff;
+    transition: 1.1s ease-in-out;
+    transition-delay: 0.5s;
+}
+.panel h3 {
+    font-size: 24px;
+    font-weight: 600;
+}
+.panel p {
+    font-size: 15px;
+    padding: 10px 0;
+}
+.image {
+    width: 100%;
+    transition: 1.1s ease-in-out;
+    transition-delay: 0.4s;
+}
+.left-panel .image,
+.left-panel .content {
+    transform: translateX(-200%);
+}
+.right-panel .image,
+.right-panel .content {
+    transform: translateX(0);
+}
+.account-text {
+    display: none;
+}
+/* /Animation/ */
+.contain.sign-up-mode::before {
+    transform: translateX(0);
+}
+.contain.sign-up-mode .right-panel .image,
+.contain.sign-up-mode .right-panel .content {
+    transform: translateX(200%);
+}
+.contain.sign-up-mode .left-panel .image,
+.contain.sign-up-mode .left-panel .content {
+    transform: translateX(0);
+}
+.contain.sign-up-mode form.sign-in-form {
+    opacity: 0;
+}
+.contain.sign-up-mode form.sign-up-form {
+    opacity: 1;
+}
+.contain.sign-up-mode .right-panel {
+    pointer-events: none;
+}
+.contain.sign-up-mode .left-panel {
+    pointer-events: all;
+}
+/* /Responsive/ */
+@media (max-width:779px) {
+    .contain {
+        width: 100vw;
+        height: 100vh;
+    }
+}
+@media (max-width:635px) {
+    .contain::before {
+        display: none;
+    }
+    form {
+        width: 80%;
+    }
+    form.sign-up-form {
+        display: none;
+    }
+    .contain.sign-up-mode2 form.sign-up-form {
+        display: flex;
+        opacity: 1;
+    }
+    .contain.sign-up-mode2 form.sign-in-form {
+        display: none;
+    }
+    .panels-contain {
+        display: none;
+    }
+    .account-text {
+        display: initial;
+        margin-top: 30px;
+    }
+}
+@media (max-width:320px) {
+    form {
+        width: 90%;
+    }
+}
+</style>
+
+
+
+   
+    <!-- {% if messages %}
+        {% for noti in messages %}
+        <script>alert( "{{noti}}" );</script>
+        {%endfor%}
+        {%for m in messages%}
+        <script>alert("{{m}}")</script>
+        {%endfor%}
+    {% endif %} -->
+
+    <!-- {% if messages %}
+<!-- <script>
+    Swal.fire("Registration successful");
+    // Swal.fire({
+    //     title: 'Registration Successfull!',
+    //     text: '{{ messages.0 }}',
+    //     icon: 'success',
+    //     confirmButtonText: 'OK'
+    // })
+</script> -->
+<!-- {% endif %} --> -->
+    <div class="contain" style="margin-bottom: 2%;">
+        <div class="signin-signup" >
+            <!-- SIGN IN FORM FOR DESIGNER -->
+            <form onsubmit="return checkPass()" action="/designer_login/" method="post" class="sign-in-form needs-validation" novalidate>
+                {%csrf_token %}
+                {%for m in messages%}
+                <script> alert ("{{m}}")</script>
+                   {%endfor%}
+                <h2 class="title">Sign in</h2>
+                <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Username" name="d_id" required>
+                    <div class="invalid-feedback">
+                        Please enter a username.
+                    </div>
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Password" name="d_password" id="d_pass" required>
+                    <div class="invalid-feedback">
+                        Please enter a password.
+                    </div>
+                </div>
+                <input type="submit" value="Login" class="btn">
+                <p class="social-text">Or Sign in with social platform</p>
+                <div class="social-media">
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="" class="social-icon">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="" class="social-icon">
+                        <i class="fab fa-google"></i>
+                    </a>
+                    <a href="" class="social-icon">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+                <p class="account-text">Don't have an account? <a href="#" id="sign-up-btn2">Sign up</a></p>
+            </form>
+            <!-- REGISTRATION FORM FOR DESINGER -->
+            <form action="/d_register/" method="post" class="sign-up-form needs-validation" enctype="multipart/form-data" novalidate>
+                {% csrf_token %}
+                {%for m in messages%}
+                <script> alert ("{{m}}")</script>
+                   {%endfor%}
+        
+                <h2 class="title">Create Account</h2>
+                <div class="input-field">
+                    <!-- <i class="fas fa-user"></i> -->
+                    <input type="text" placeholder="Name"  name="d_name" required oninput="validateInput(event)">
+                    <div class="invalid-feedback">
+                        Name cannot have characters.
+                    </div>
+                </div>
+                <div class="input-field">
+                    <!-- <i class="fas fa-envelope"></i> -->
+                    <input type="text" placeholder="Email" name="d_mail" required>
+                    <div class="invalid-feedback">
+                        Provide a valid  email address.
+                    </div>
+                </div>
+              
+                <div class="input-field">
+                    <!-- <i class="fas fa-user"></i> -->
+                    <input type="text" placeholder="Username"  name="d_id" id="des_id" required>
+                    <div class="invalid-feedback">
+                        Provide a valid username.
+                    </div>
+                </div>
+                <div class="input-field">
+                    <!-- <i class="fas fa-envelope"></i> -->
+                    <input type="text" placeholder="Phone Number" name="d_phone" id="phone_number" maxlength="10" required>
+                    <div class="invalid-feedback">
+                        Provide a valid phone number.
+                    </div>
+                </div>
+                <div class="input-field">
+                    <!-- <i class="fas fa-envelope"></i> -->
+                    <input type="text" placeholder="Qualification" name="d_qualification" required>
+                    <div class="invalid-feedback">
+                        Provide your qualification.
+                    </div>
+                </div>
+                <div class="input-field">
+                    <select class="form-select" aria-label="Default select example" name="d_state" required>
+                        <option selected disabled value="">State</option>
+                        <option value="AN">Anadaman-Nicobar Islands</option>
+                        <option value="BH">Bihar</option>
+                        <option value="CH">Chattisgarh</option>
+                        <option value="CD">Chandigarh</option>
+                        <option value="DH">Delhi</option>
+                        <option value="UP">Uttar Pradesh</option>
+                        <option value="MH">Maharashtra</option>
+                        <option value="RJ">Rajasthan</option>
+                      </select>
+                      <div class="invalid-feedback">
+                        Select a valid state.
+                      </div>
+                </div>
+                <div class="input-field">
+                    <select class="form-select" aria-label="Default select example" name="d_city" required>
+                        <option selected disabled value="">City</option>
+                        <option value="LKO">Lucknow</option>
+                        <option value="BEH">Behraich</option>
+                        <option value="MEE">Meerut</option>
+                        <option value="KAN">Kanpur</option>
+                        <option value="VAR">Varanasi</option>
+                        <option value="KAN">Kannauj</option>
+                        <option value="MUM">Mumbai</option>
+                        <option value="JOD">Jodhpur</option>
+                      </select>
+                      <div class="invalid-feedback">
+                        Select a valid city.
+                    </div>
+                </div>
+                <div class="input-field">
+                    <select class="form-select" aria-label="Default select example" name="d_gen" required>
+                        <option selected disabled value="">Gender</option>
+                        <option value="M" >Male</option>
+                        <option value="F">Female</option>
+                        <option value="O">Other</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Select a valid gender.
+                    </div>
+                </div>
+                <div class="input-field">
+                    <textarea class="form-control" placeholder="skills" id="floatingTextarea2" style="height:50px" name="d_skills" required></textarea>
+                    <div class="invalid-feedback">
+                        Please enter your skills.
+                    </div>
+                </div>
+                <div class="input-field">
+                    <!-- <i class="fas fa-lock"></i> -->
+                    <input type="password" id="pwd" title="Minimum 6 characters" placeholder="Create Password" name="d_password" required>
+                    <div class="invalid-feedback">
+                        Provide a valid password.
+                    </div>
+                </div>
+                <div class="input-field">
+                    <input type="file" class="form-control" id="floatingInput" placeholder="" name="d_pic">
+                </div>
+                <input type="submit" value="Sign up" class="btn">
+           
+                <p class="account-text">Already have an account? <a href="#" id="sign-in-btn2">Sign in</a></p>
+            </form>
+        </div>
+        <div class="panels-contain">
+            <div class="panel left-panel">
+                <div class="content">
+                    <h3>Nice seeing you again!</h3>
+                    <p>Stay updated on fashion trends by logging in using your personal info</p>
+                    <button class="btn" id="sign-in-btn">Sign in</button>
+                </div>
+                <img src="signin.svg" alt="" class="image">
+            </div>
+            <div class="panel right-panel">
+                <div class="content">
+                    <h3>Welcome to our site!</h3>
+                    <p>Register yourself to witness the whole new experience of fashion.</p>
+                    <button class="btn" id="sign-up-btn">Sign up</button>
+                </div>
+                <img src="signup.svg" alt="" class="image">
+            </div>
+        </div>
+    </div>
+
+  <!-- designer sidebar -->
+  <div class="container1">
+    <form class="d-flex" role="search">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button><button type="button" class="btn-close" aria-label="Close"></button>
+    </form>
+    <ol style="list-style: none;">
+    {%for d in des%}
+    <div class="d-flex">
+      <li><a href="/designer/{{d.d_ID}}">{{d.d_name}}</a> </li>
+    <button class="me-5 px-4 btnb py-0" onclick="window.location.href='{%url 'chat' d.d_ID%}';">Chat</button>
+    </div>
+    {%endfor%}
+    </ol>
+  </div>
+  <!-- sidebar end -->
+
+<script>
+const sign_in_btn = document.querySelector("#sign-in-btn");
+const sign_up_btn = document.querySelector("#sign-up-btn");
+const container = document.querySelector(".contain");
+const sign_in_btn2 = document.querySelector("#sign-in-btn2");
+const sign_up_btn2 = document.querySelector("#sign-up-btn2");
+sign_up_btn.addEventListener("click", () => {
+    container.classList.add("sign-up-mode");
+});
+sign_in_btn.addEventListener("click", () => {
+    container.classList.remove("sign-up-mode");
+});
+sign_up_btn2.addEventListener("click", () => {
+    container.classList.add("sign-up-mode2");
+});
+sign_in_btn2.addEventListener("click", () => {
+    container.classList.remove("sign-up-mode2");
+});
+</script>
+
+<script src="{% static 'fn_app/js/validation.js' %}"></script>
+<script src="{% static 'fn_app/js/custom_validation.js' %}"></script>
+
+
+<script>
+    function validateInput(event) {
+    const input = event.target.value;
+    const regex = /^[a-zA-Z .]*$/; // Regular expression to match only characters
+    if (!regex.test(input)) {
+    // If input contains anything other than characters, remove them
+    event.target.value = input.replace(/[^a-zA-Z]/g, '');
+    alert("only alphabets allowed")
+    // Swal.fire("Only Alphabets are allowed");
+    }
+    }
+    </script>
+<script>
+    document.getElementById('phone_number').addEventListener('keydown', function(event) {
+    // Allow only digits and backspace/delete keys
+    if (!(event.key === 'Backspace' || event.key === 'Delete' || /\d/.test(event.key))) {
+    alert("only digits")
+    event.preventDefault();
+    }
+    }); </script>
+
+    <!-- side bar script -->
+    <script>
+        const designerLink = document.getElementById('designer-link');
+      const sidebar = document.querySelector('.container1');
+      
+      // Listen for a click event on the Designer link
+      designerLink.addEventListener('click', function(event) {
+      // Prevent the default behavior of the link
+      event.preventDefault();
+      
+      // Toggle the sidebar
+      sidebar.classList.toggle('open');
+      });
+      </script>
+      <!-- script for sidebar ends -->
+
+</body>
+
+
+
+{%endblock content%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

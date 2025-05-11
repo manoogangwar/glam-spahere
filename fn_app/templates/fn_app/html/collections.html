@@ -1,0 +1,136 @@
+{% extends 'fn_app/html/base.html'%}
+{%block content%}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=|DM Serif Display|Foldit|Playfair Display|Barlow|DM Sans|Heebo|">
+    <style>
+        /* .containermain{
+            margin-top:5px;
+            margin-left:5%;
+            margin-right:5%;
+        } */
+        /* btn styling */
+        .btn {
+         width: 7em;
+         height: 2.3em;
+         margin: 0.5em;
+         background: black;
+         color: white;
+         border: 0 solid;
+         border-radius: 0;
+        font-size: 20px;
+        cursor: pointer;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        left: 50%;
+        transform: translateX( -50% );
+        }
+        button:hover {
+        color: black;
+        }
+        button:after {
+        content: "";
+        background: white;
+        position: absolute;
+        z-index: -1;
+        left: -20%;
+        right: -20%;
+        top: 0;
+        bottom: 0;
+        transform: skewX(-45deg) scale(0, 1);
+        transition: all 0.5s;
+        }
+        button:hover:after {
+        transform: skewX(-45deg) scale(1, 1);
+        -webkit-transition: all 0.5s;
+        transition: all 0.5s;
+        }
+
+       
+ .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+ .col {
+    flex: 1 0 21%; /* This will make each card take up 21% of the width of the container, allowing for some margin between them */
+    margin: 2%;
+  }
+
+
+
+.card {
+    width: 350px;
+    height: 800px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+  }
+ .card img {
+    width: 100%;
+    height: 400px;
+    object-fit: fill;
+    border-radius: 5px 5px 0 0;
+  }
+ .card h5 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+ .card p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .h2
+{
+    font-size: 3rem;
+    font-family: 'Sedan SC', sans-serif;
+    margin: 60px;
+    
+}
+
+/* btn styling ends */
+</style>
+<section style="height: 900px; background-color: #fdf8f0 ; display: flex; flex-wrap: wrap;">
+<div style="margin: 10px 700px;" >
+  <h2 class="sedan" style="font-size: 3rem;color: #443d39; font-family: DM Serif Display;   ">ALL COLLECTIONS</h2></div>
+    <div style=" display: inline-flex; " class="mx-4" >
+    {%for w in obj%}
+    <div style="margin-left: 2%;">
+      <div class="col">
+        <div class="card" >
+          <img src="/media/{{w.photo}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{w.title}}</h5>
+            <h5 class="card-title">By {{w.designer.d_name}}</h5>
+            <p class="card-text">{{w.description}}</p>
+            <p class="card-text">{{w.year}}</p>
+          </div>
+        </div>
+      </div>
+</div>
+      {%endfor%}
+    </div>
+  </section>
+
+{% endblock content%}
+
+    
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+

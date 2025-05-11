@@ -1,0 +1,107 @@
+
+
+.cta{
+height: 600px;
+background: url('../../../static/fn_app/images/cta.jpg') no-repeat center 20% / cover fixed;
+background-repeat: no-repeat;
+background-position:unset ;
+background-size: cover;
+background-attachment: fixed;
+}
+
+
+/* designer sidebar */
+*{
+  box-sizing: border-box;
+  font-family: sans-serif;
+  }
+  .scrl::-webkit-scrollbar{
+    display: none !important;
+}
+
+.container1{
+  margin-top: 5.5%;
+  
+  border-radius: 8px;
+  border: 2px solid rgba(110, 107, 107, 0.5);
+  height: 800px;
+  width: 500px;
+  position: fixed;
+  right: 0%;
+  top:0%;
+  bottom: 0%;
+  backdrop-filter: blur(5px);
+  z-index: 99 !important;
+  transition: 0.5s ease;
+  transform: translateX(550px);
+  /* backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px); */
+  /* box-sizing: border-box;
+  box-shadow: transparent; */
+  }
+.container1 .head{
+  /* color: #ffffff; */
+  border-bottom: 2px ;
+  font-size: 30px;
+  font-weight: bold;
+  padding: 30px;
+  text-align: center;
+  letter-spacing: 3px;
+  /* background: linear-gradient(30deg,#333232,#000000); */
+  }
+.container1.open {
+  transform: translateX(0);
+  }
+ol{
+  backdrop-filter: blur(6px);
+  width: 100%;
+  list-style: none;
+  }
+ol li{
+  display: block;
+  width: 100%;
+  }
+ol li a {
+  color:black;
+  padding: 15px 10px ;
+  text-decoration: none;
+  display: block;
+  font-size: 20px;
+  letter-spacing: 1px;
+  position: relative;
+  transition:0.3s ;
+  overflow: hidden;
+  text-transform: capitalize;
+  
+  }
+/* ol li a i {
+  width: 70px;
+  font-size: 25px;
+  text-align: center;
+  padding-left: 30px;
+  } */
+ol li :hover a {
+  background: #141414;
+  color: #00eaff;
+  letter-spacing: 5px;
+  }
+span{
+  position: absolute;
+  right: -40px;
+  top: 30px;
+  font-size: 25px;
+  border-radius: 3px;
+  color: #fff;
+  padding: 3px 8px;
+  cursor: pointer;
+  background: #111111;
+  }
+/* section{
+  min-height: 100vh;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition:0.5s ;
+  filter: brightness(60%);
+  } */
+

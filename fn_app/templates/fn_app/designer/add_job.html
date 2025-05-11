@@ -1,0 +1,159 @@
+{%extends 'fn_app/html/base.html'%}
+{%block content%}
+{% load static %}
+<style>
+
+.contain {
+ background-color: #cfbfa5;
+ box-sizing: border-box;
+   box-shadow: transparent;
+   width: 900px;
+   height: fit-content;
+   border-radius: 8px;
+   padding: 30px;
+   text-align: center;
+   border: 2px solid rgba(110, 107, 107, 0.5);
+   backdrop-filter: blur(7px);
+   -webkit-backdrop-filter: blur(7px);
+   }
+
+
+/* button css */
+</style>
+<section style="display: flex; flex-wrap: wrap; width: 100%; justify-content: center; background-color: #fdf8f0;">
+ <div style="margin:50px 500px;">
+<div class=" contain "  >
+    <form action="/add_job/" method="POST" class="needs-validation"  novalidate>
+      {%csrf_token%}
+      {%if messages%}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          {%for m in messages%}
+           <script> alert ("{{m}}")</script>
+              {%endfor%}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {%endif%}
+    <div class="col-3 mt-5" style="float: left">
+        <img src="{% static 'fn_app/images/jobs.png' %}"  alt="" >
+    </div>
+    <div class="row">
+        <div class="col-7" style="float: left; margin-left: 46%;">
+            <div class="form-floating col-12 mt-3" >
+                <input type="text" class="form-control form-group" id="floatingInput" placeholder="designation" name="designation" required oninput="validateInput(event)">
+                <label class="form-label" for="floatingPassword"><i>Designation</i></label>
+                <div class="invalid-feedback">
+                  Please enter Designation.
+                </div>
+              </div>
+              <div class="form-floating col-12 mt-3" >
+                <input type="text" class="form-control form-group" id="seat" placeholder="" name="seats" required>
+                <label class="form-label" for="floatingPassword"><i>Number of Seats</i></label>
+                <div class="invalid-feedback">
+                  Please enter number of seats.
+                </div>
+              </div>
+              <div class="form-floating col-12 mt-3" >
+                <input type="text" class="form-control form-group" id="floatingInput" placeholder="" name="mailing_link" required>
+                <label class="form-label" for="floatingPassword"><i>Mailing link</i></label>
+                <div class="invalid-feedback">
+                  Please enter mmailing link.
+                </div>
+              </div>
+              <div class="form-floating col-12 mt-3" >
+                <input type="text" class="form-control form-group" id="floatingInput" placeholder="" name="eligibility" required>
+                <label class="form-label" for="floatingPassword"><i>Eligibility</i></label>
+                <div class="invalid-feedback">
+                  Please enter your eligibility.
+                </div>
+              </div>
+              <div class="form-floating col-12 mt-3" >
+                <input type="text" class="form-control form-group" id="floatingInput" placeholder="" name="profile" required oninput="validateInput(event)">
+                <label class="form-label" for="floatingPassword"><i>Work Profile</i></label>
+                <div class="invalid-feedback">
+                  Please enter your profile.
+                </div>
+              </div>
+              <div class="form-floating col-12 mt-3" >
+                <input type="text" class="form-control form-group" id="floatingInput" placeholder="" name="qualification" required>
+                <label class="form-label" for="floatingPassword"><i>Qualification</i></label>
+                <div class="invalid-feedback">
+                  Please enter your qualification.
+                </div>
+              </div>
+              <div class="form-floating col-12 mt-3" >
+                <input type="text" class="form-control form-group" id="floatingInput" placeholder="" name="location" required oninput="validateInput(event)">
+                <label class="form-label" for="floatingPassword"><i>Job Location</i></label>
+                <div class="invalid-feedback">
+                  Please enter your job locatiion.
+                </div>
+              </div>
+              <div class="form-floating col-12 mt-3" >
+                <input type="text" class="form-control form-group" id="age" placeholder="" name="age" maxlength="2" required>
+                <label class="form-label" for="floatingPassword"><i>Age</i></label>
+                <div class="invalid-feedback">
+                  Please enter your age .
+                </div>
+              </div>
+              <div class="form-floating col-12 mt-3" >
+                <input type="date" class="form-control form-group" id="floatingInput" placeholder="" name="date" required>
+                <label class="form-label" for="floatingPassword"><i>Last date</i></label>
+                <div class="invalid-feedback">
+                  Please enter last date.
+                </div>
+              </div>
+              <div class="form-floating col-12 mt-3" >
+                <input type="text" class="form-control form-group" id="salary" placeholder="" name="salary" required>
+                <label class="form-label" for="floatingPassword"><i>Salary package</i></label>
+                <div class="invalid-feedback">
+                  Please enter your salary package.
+                </div>
+              </div>
+               <button style="margin: 30px 100px;" class="btna" type="submit">SUBMIT</button>
+          </div>
+        </div>
+    </div>    
+</form>
+</div>
+</section>
+<script>
+  function validateInput(event) {
+  const input = event.target.value;
+  const regex = /^[a-zA-Z .]*$/; // Regular expression to match only characters
+  if (!regex.test(input)) {
+  // If input contains anything other than characters, remove them
+  event.target.value = input.replace(/[^a-zA-Z]/g, '');
+  alert("only alphabets allowed")
+  // Swal.fire("Only Alphabets are allowed");
+  }
+  }
+</script>
+  <script>
+      document.getElementById('seat').addEventListener('keydown', function(event) {
+      // Allow only digits and backspace/delete keys
+      if (!(event.key === 'Backspace' || event.key === 'Delete' || event.key==='Tab'|| /\d/.test(event.key))) {
+      alert("only digits allowed")
+      event.preventDefault();
+      }
+      }); </script>
+      <!-- <script>
+        document.getElementById('salary').addEventListener('keydown', function(event) {
+        // Allow only digits and backspace/delete keys
+        if (!(event.key === 'Backspace' || event.key === 'Delete' || event.key==='Tab'|| /\d/.test(event.key))) {
+        alert("only digits allowed")
+        event.preventDefault();
+        }
+        }); </script> -->         
+        <script>
+          document.getElementById('age').addEventListener('keydown', function(event) {
+          // Allow only digits and backspace/delete keys
+          if (!(event.key === 'Backspace' || event.key === 'Delete' ||  event.key==='Tab' ||  /\d/.test(event.key))) {
+          alert("only digits allowed")
+          event.preventDefault();
+          }
+          }); </script>
+          <script>
+            if ( window.history.replaceState ) {
+              window.history.replaceState( null, null, window.location.href );
+            }
+            </script>
+{%endblock content%}

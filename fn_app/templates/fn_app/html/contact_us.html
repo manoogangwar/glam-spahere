@@ -1,0 +1,307 @@
+{% extends 'fn_app/html/base.html'%}
+{% block content %}
+<style>
+*{
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+ 
+  background-color: #fdf8f0;
+}
+.contactUs
+{
+  position: relative;
+  width: 100%;
+  padding: 40px 100px;
+}
+.contactUs .title
+{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+}
+.contactUs .title h2{
+  color:#fff ;
+  font-weight: 500;
+  font-size: 50px;
+}
+.form{
+  height: 700px;
+  grid-area: form;
+}
+.info{
+  grid-area: info;
+}
+.map{
+  grid-area: map;
+}
+.contact
+{
+  padding: 40px;
+  background: #bbab92;
+  box-shadow: 0 5px 35px rgba(0,0,0,0.15);
+}
+.box
+{
+position: relative;
+display: grid;
+grid-template-columns: 2fr 1fr;
+grid-template-rows: 4fr 3fr;
+grid-template-areas:
+"form info"
+"form map";
+margin-top: 20px;
+grid-gap: 20px;
+}
+.contact h3
+{
+  color: #0e0e0e;
+  font-weight: 500;
+  font-size: 1.4em;
+  text-align: center;
+ 
+}
+.formBox
+{
+  position: relative;
+  width: 100%;
+}
+.formBox .row50
+{
+  display: flex;
+ 
+}
+.inputBox
+{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2px;
+  width: 50%;
+}
+.formBox .row100 .inputBox{
+  width: 100%;
+
+}
+.inputBox
+{
+  padding: 5px;
+  font-size: 1.4em;
+}
+.inputBox textarea  :focus
+{
+  border: 2px solid #fdf8f0;
+  padding: 15px;
+  font-size: 18px;
+  border: none;
+  border-bottom: 1.5px solid#fdf8f0;
+  outline: none;
+  margin-bottom: 10px;
+  border-radius: 2px;
+ 
+}
+.text1
+{
+  height: 52px;
+  border-radius: 2px;
+ border: none;
+ border-bottom: 1.5px solid#fdf8f0;
+ outline: none;
+  font-size: 18px;
+ }
+ .inputBox input[type="text"]:focus {
+  border: 2px solid #fdf8f0;
+  padding-left: 13px; /* Add 10px of padding to the left */
+}
+.inputBox input[type="tel"]:focus {
+  border: 2px solid #fdf8f0;
+  padding-left: 13px; /* Add 10px of padding to the left */
+}
+.inputBox input[type="email"]:focus {
+  border: 2px solid #fdf8f0;
+  padding-left: 13px; /* Add 10px of padding to the left */
+}
+.info{
+  background: #1f1e1e;
+}
+.info h3{
+  color:#fff ;
+  font-size: 1.5em;
+}
+.info .infoBox div span
+{
+  min-width: 40px;
+  height: 40px;
+  color: #fdf8f0;
+}
+.info .infoBox div p{
+  color:#fdf8f0; 
+}
+.info .infoBox div a{
+  color:#fdf8f0; 
+}
+.li{
+list-style: none;
+margin-right: 15px;
+}
+.li a{
+  color: #c9c6c6;
+  font-size: 2em;
+  color: #c9c6c6;
+}
+.li a:hover
+{
+  color:#c9c6c6;
+}
+.map{
+  padding: 0;
+}
+.map iframe{
+  width: 100%;
+  height: 100%;
+}
+.list-unstyled{
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 25px;
+ 
+}
+.list-unstyled li{
+  margin-right: 25px;
+}
+.pp
+{
+  color: #fff;
+  font-size: 1.3rem;
+
+  
+}
+.title{
+  letter-spacing: 1px;
+}
+.btn {
+  font-family: 'Poppins';
+    border-radius: 50px; 
+    height: 60px;
+    width: 150px;
+    margin: 20px 0px;
+    font-size: large;
+    display: block;
+    transition: all 0.4s;
+    border: none;
+    color:#fdf8f0;;
+    background-color:   rgb(196, 68, 68);
+    letter-spacing: 2px;
+    &:hover{
+        background-color: black;
+        color: white;
+    }
+}
+</style>
+
+ <body>
+  {%for m in messages%}
+           <script> alert ("{{m}}")</script>
+              {%endfor%}
+<div class="contactUs">
+  <div class="title">
+    <h2 style="color: #443d39; font-family: DM Serif Display; margin-right: 1%; ">Contact. <h2 style="color: #ca0202;font-family:Carter One; margin-right: 1%;">Connect.</h2> <h2 style="color: #443d39; font-family: DM Serif Display;">Communicate</h2>
+  </div>
+  <div class="box">
+    <!-- form  -->
+    <div class="contact form" >
+      <h3 style="font-size: 2.3rem; margin-bottom: 4%;color:#443d39; font-family:Maitree; font-weight: 600; ">Send a message</h3>
+      <form action="/contact_us/" method="post">
+        {% csrf_token %}
+        <div class="formBox">
+        <div class="row50">
+        <div class=" inputBox">
+          <label  for="name">Full name</label>
+          <input class="text1" style="background-color:  #fdf8f0;" type="text"  id="floatingInput" placeholder="" name="name" oninput="validateInput(event)" required>
+  
+        </div>
+        </div>
+        <div class="row50">
+        <div class=" inputBox">
+          <label for="email">Email Address</label>
+          <input class="text1" style="background-color:  #fdf8f0;" type="email"  id="floatingInput" placeholder="" name="email" required>
+          
+        </div>
+      </div>
+      <div class="row50">
+        <div class="inputBox">
+          <label for="phone number">Telephone</label>
+          <input class="text1" type="tel" style="background-color:  #fdf8f0;" id="phone_number" placeholder="" name="phone" maxlength="10" required>
+         
+        </div>
+      </div>
+      <div class="row50">
+        <div class="inputBox">
+          <label for="questiom">Message</label>
+          <textarea  placeholder="" id="floatingTextarea2" style="height: 100px" style="background-color:  #fdf8f0;"  name="question" oninput="validateInput(event)" required></textarea>
+         
+        </div>
+      </div>
+      <div class="row50">
+        <div class="inputBox">
+          <button type="submit " class="btn"><p style="font-size: 1.6rem; margin-top: 4%;"> SEND</p></button>
+        </div>
+      </div>
+        
+      </div>
+      </form>
+    </div>
+    <div class="contact info">
+      <h3 style=" font-size: 2rem;">Contact info</h3>
+      <hr style="color: #fff;">
+      <div class="info Box">
+     <div><p class="pp"><i class=" fas fa-map-marker-alt" style="margin-right: 2%;"></i> AKTU University , Lucknow <br>INDIA</p></div> 
+     <div><a class="pp" href="mailto:glamsphere@gmail.com"><i class='fas fa-envelope' style="margin-right: 2%;"></i> glamsphere@gmail.com</a></div>
+      <div class="pp" style="margin-top: 3%;">   <a style="margin-top: 2%;" class="pp"  href="tel:+91123456789"><i class='fas fa-phone' style="margin-right: 2%;"></i> +91 123456789 </a></div>
+         
+    
+      
+        <ul class="list-unstyled" >
+          <li><a href="#"><i class='fab fa-instagram'></i></a></li>
+          <li><a href="#"><i class='fab fa-facebook-f'></i></a></li>
+          <li><a href="#"><i class='fab fa-linkedin-in'></i></a></li>
+          <li><a href="#"><i class='fab fa-twitter'></i></a></li>
+        </ul>
+      </div>
+ </div>
+  
+    <div class="contact map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3556.715079180716!2d80.93753977489611!3d26.944245658735642!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3999564d2761d6eb%3A0x451418ec61b4ac7!2sDr.%20A.%20P.%20J.%20Abdul%20Kalam%20Technical%20University%2C%20Lucknow!5e0!3m2!1sen!2sin!4v1744889841541!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+
+
+</div>
+<script>
+  function validateInput(event) {
+  const input = event.target.value;
+  const regex = /^[a-zA-Z .]*$/; // Regular expression to match only characters
+  if (!regex.test(input)) {
+  // If input contains anything other than characters, remove them
+  event.target.value = input.replace(/[^a-zA-Z]/g, '');
+  //alert("only aplhabets allowed")
+  alert("Only Alphabets are allowed");
+  }
+  }
+  </script>
+  <script>
+
+    document.getElementById('phone_number').addEventListener('keydown', function(event) {
+    // Allow only digits and backspace/delete keys
+    if (!(event.key === 'Backspace' || event.key === 'Delete' || /\d/.test(event.key))) {
+    alert("Only digits are allowed")
+    event.preventDefault();
+    }
+    });
+    
+        </script>
+    
+
+{% endblock content%}

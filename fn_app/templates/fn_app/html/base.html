@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glam Sphere|Home</title>
+    {% include 'fn_app/common/common_css.html' %}
+</head>
+<body style=" overflow-x: hidden; width: 100vw; scrollbar-gutter: 0;" class="scrl" >
+  {% include 'fn_app/common/header.html' with user=user %}
+  <!-- designer sidebar -->
+  <div class="container1">
+    <div style="text-align: center; margin-top: 2%;margin-bottom: 5%;" > <h2  style="   font-size: 2.5rem;font-family: 'Sedan SC', sans-serif;margin: 30px; color: black;">ALL DESIGNER </h2></div>
+    <ol style="list-style: none;">
+    {%for d in des%}
+    <div class="d-flex">
+      <li><a href="/designer/{{d.d_ID}}">{{d.d_name}}</a> </li>
+    <button class="me-5 px-4  py-0" onclick="window.location.href='{%url 'chat' d.d_ID%}';">Chat</button>
+    </div>
+    {%endfor%}
+    </ol>
+  </div>
+  <!-- sidebar end -->
+
+{%block content%}
+
+{%endblock content%}
+
+
+<script>
+    const designerLink = document.getElementById('designer-link');
+  const sidebar = document.querySelector('.container1');
+  
+  // Listen for a click event on the Designer link
+  designerLink.addEventListener('click', function(event) {
+  // Prevent the default behavior of the link
+  event.preventDefault();
+  
+  // Toggle the sidebar
+  sidebar.classList.toggle('open');
+  });
+  </script>
+  <!-- script for sidebar ends -->
+  <script>
+    function getRandomColor() {
+        var letters = 'CDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 4)];
+        }
+        return color;
+    }
+    var cards = document.querySelectorAll('.cardss');
+    cards.forEach(function(card) {
+        var color = getRandomColor();
+        card.style.backgroundColor = color;
+        card.addEventListener('mouseover', function() {
+            this.style.boxShadow = '5px 5px 40px 10px ' + color;
+        });
+        card.addEventListener('mouseleave', function() {
+            this.style.boxShadow = '5px 5px 30px 0 ' + "#999999"; 
+        });
+    });
+</script>
+<script>
+    window.on.load = function(){
+    if(window.history.replaceState){
+      window.history.replaceState(null,null,window.location.href);
+    }
+  }
+</script> 
+<script>
+    const messageIcon = document.getElementById("message-icon");
+    const messageBox = document.getElementById("message-boxxxx");
+    messageIcon.addEventListener("click", () => {
+      messageBox.classList.toggle("hidden");
+    });
+    </script>
+  <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="{%static 'fn_app/js/validation.js'%}"></script>
+  <script src="{%static 'fn_app/js/custom_validation.js'%}"></script>
+{% include 'fn_app/common/footer.html' %}
+  </body>
+  </html>

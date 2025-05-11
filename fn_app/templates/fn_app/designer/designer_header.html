@@ -1,0 +1,179 @@
+{% load static %}
+   <style>
+        .nav-link{
+            color: rgb(15, 15, 15);
+            font-size: 18px;
+            font-family: Verdana;
+        }
+        .nav-link:active{
+            font-family: Georgia;
+            font-size: 15px;
+            color: rgb(82, 83, 82) !important;
+            font-weight: bold;
+        }
+        .nav-link:hover{
+          color: rgb(224, 180, 122);
+        }
+        .nav-link:visited{
+          color: #0e0d0d;
+        }
+     
+        .dropdown-item{
+            font-family: Times New Roman;
+            color: goldenrod;
+            font-size: 20px;
+        }
+        .w-100{
+            height: 60vh;
+            
+        }
+        .dropdown-menu li {
+          position: relative;
+            }
+        .dropdown-menu .dropdown-submenu {
+            display: none;
+            position: absolute;
+            right: 100%;
+            top: -7px;
+            background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+            }
+        .dropdown-menu .dropdown-submenu-left {
+          right: 100%;
+          left: auto;
+            }
+        
+            .navbar {
+  transition: transform 0.5s;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar.zoom-out {
+  transform: scale(0.9);
+}
+nav li {
+  margin-right: 20px; /* add a gap of 20px between links */
+}
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  left: 0; /* Change this to 'right: 0;' to open the dropdown on the right side */
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+</style>
+
+   
+
+
+    <!-- fixed-top for fixed header -->
+    <!-- nav bar code start from here -->
+    <div><img src="{% static 'fn_app/images/newlogo.png'%}" style="height:1.7cm; width:5.5cm; background-color: #0e0d0d; margin-left: 45%;" class="img-fluid"></div>
+    <nav class="navbar navbar-expand-lg " style=" background:linear-gradient(270deg,rgb(247, 246, 246), rgb(248, 246, 246));">
+
+      
+        <div class="container-fluid" style="margin-left: 20%;">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-left: 25%;">
+              <li class="nav-item">
+               
+              </li>
+    <!-- links -->
+              <li class="nav-item">
+                <a class="nav-link" href="{{'/news/'}}">  News</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{'/events/'}}">Events</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{'/designer/'}}" id="designer-link">Designers</a>
+              </li>
+             
+                <li class="nav-item">
+                  <a class="nav-link" href="{{'/d_workscollection/'}}">Work Collection</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{'/add_job/'}}">Job</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{'/post_tips/'}}">Tips</a>
+                </li>
+            </ul>
+            
+              <!-- <li class="nav-item">
+                <a class="nav-link" href="{{'/d_works/'}}">Our Designers</a>
+              </li> -->
+            </ul>
+            
+            <div class="dropdown me-5">
+              <a class="nav-link dropdown me-5" href="#" id="login-button" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <i class="fas fa-user"></i></a>
+            <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+              <li><a class="dropdown-item" href="{{'/designer_edit_home/'}}">Edit Profile</a>
+              </li>
+              <li><a class="dropdown-item" href="{{'/logout/'}}">Logout</a>
+                
+              </li>
+            </ul>
+          </div>
+          </div>
+        </div>
+
+      </nav>
+    <!-- nav bar code ends here -->
+    <script>
+    let lastScrollTop = 0;
+
+window.addEventListener('scroll', function() {
+  let st = window.pageYOffset || document.documentElement.scrollTop;
+  if (st > lastScrollTop) {
+    // Scroll down
+    document.querySelector('.navbar').classList.remove('zoom-in');
+    document.querySelector('.navbar').classList.add('zoom-out');
+  } else {
+    // Scroll up
+    document.querySelector('.navbar').classList.remove('zoom-out');
+    document.querySelector('.navbar').classList.add('zoom-in');
+  }
+  lastScrollTop = st;
+});
+</script>
+<script>
+  const homeButton = document.querySelector('.home-button');
+
+homeButton.addEventListener('click', () => {
+  window.location.href = '/';
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

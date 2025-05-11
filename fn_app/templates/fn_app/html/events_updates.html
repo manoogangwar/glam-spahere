@@ -1,0 +1,107 @@
+{%extends 'fn_app/html/base.html'%}
+{%block content%}
+
+<style>
+  .event-section {
+  
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #fdf8f0;
+  padding: 20px;
+}
+  .card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+ margin: 40px auto;
+  width: 100%;
+  margin-bottom: 2%;
+}
+.card {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  height: 500px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
+}
+
+.xz {
+  height: 200px; /* Set a fixed height for the .xz class */
+  width: 100%;
+  overflow: hidden;
+}
+
+.card img {
+  transition: all 0.3s;
+  height: 100%; /* Make the image height equal to the .xz height */
+  width: 100%;
+  object-fit: cover; /* Maintain the aspect ratio of the image */
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.main-content {
+  font-size: 16px;
+  color: #666;
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+.list-group-item {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.list-group-item:last-child {
+  border-bottom: none;
+}
+</style>
+
+
+<section class="event-section">
+  <div class="container-fluid mt-2" >
+    <h2 style=" text-align: center; color: #443d39; font-family: DM Serif Display; font-size: 3rem; ">EVENTS</h2><hr></div>
+  <div class="card-container">
+    {% for e in event_key %}
+      <div class="card">
+        <div class="xz">
+          <img src="/media/{{e.evnt_gallery}}" class="card-img-top" alt="...">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{e.event_name}}</h5>
+          <div class="main-content">
+            <div class="header">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Venue : {{e.event_venue}}</li>
+                <li class="list-group-item">Description : {{e.event_description}}</li>
+                <li class="list-group-item">Date: {{e.event_date}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+{%endblock content%}

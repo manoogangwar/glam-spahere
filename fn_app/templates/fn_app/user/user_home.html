@@ -1,0 +1,125 @@
+{% extends 'fn_app/html/base.html'%}
+{% block content %}
+{% load static%}
+   <style>
+  body {
+    background-color: #fdf8f0;
+}
+
+.containerr {
+width: 800px;
+  height: 700px;
+    max-width: 600px;
+    margin: 30px auto ;
+    
+
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+.col-md-4 {
+    display: flex;
+    flex-direction: column;
+  
+
+}
+
+@media (min-width: 768px) {
+   .col-md-4 {
+        width: 31%;
+
+    }
+
+   .col-md-8 {
+        width: 69%;
+    }
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+.rounded-circle {
+    border-radius: 50%;
+}
+.mm{
+  color: #443d39;
+  margin-bottom: 10px;
+  margin-left:4px ;
+  font-size: 1rem;
+  font-family:Poppins ;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+}
+.mn{
+  margin-top: 10px;
+  margin-bottom: 40px;
+  height:47px ;
+}
+.bt{ 
+  text-decoration: none;
+  color:   rgb(196, 68, 68);
+  font-size: 30px;
+  margin: 20px 65px;
+}
+.rounded-circle {
+  width: 150px; /* adjust this value */
+  height: 150px; /* adjust this value */
+  object-fit: cover; /* or use contain, depending on your needs */
+  border-radius: 50%;
+  margin: 30px 10px;
+}
+.form-control {
+    background-color: #efe8da90;
+}
+   </style>
+<!-- designer profile starts here  -->
+<body>
+  
+<section style="height: 900px;">
+<h2 style=" color: #443d39; font-family: DM Serif Display; margin: 40px 650px;font-size: 2.5rem;letter-spacing: 2px;"><i class="fas fa-user" style="margin-right: 1%; font-size: 2rem; "></i > PROFILE</h2>
+
+  <div class="containerr ">
+      <div class="row">
+        
+        <div class="col-md-8" style="background-color:#efe8da     ;">
+          <h2 style="text-align: center; margin-top: 5%; color:#443d39; font-family: Sedan SC;">Information</h2>
+          <hr>
+            <h6 class="mm" style="margin-top: 10%;">Name</h6>
+            <input type="text" name="name" value="{{obj_key.u_name}}" class="form-control mn">
+            <h6 class="mm">Email</h6>
+            <p class="text-muted"><input type="email" name="email" value="{{obj_key.u_mail}}" class="form-control mn"></p>
+            <h6 class="mm">Phone Number</h6>
+            <p class="text-muted"> 
+              <input type="phone" name="phone" value="{{obj_key.u_phone}}" class="form-control mn" maxlength="10"></p>
+              <h6 class="mm">City</h6>
+              <p class="text-muted"><input type="text" name="city" value="{{obj_key.u_city}}" class="form-control mn"></p>
+
+              
+        </div>
+        <div class="col-md-4" style="background-color:#efe8da90">
+          <img src="{{obj_key.u_pic.url}}" 
+          alt="Avatar" class="  mb-3 rounded-circle" />
+       
+        <a href="{{'/user_edit_home/'}}">
+         <i class="far fa-edit  bt"></i></a>
+            
+        </div>
+          </div>
+            <!-- <div class="d-flex justify-content-start">
+              <a href="#!"><i class="fab fa-facebook-f fa-lg me-3"></i></a>
+              <a href="#!"><i class="fab fa-twitter fa-lg me-3"></i></a>
+              <a href="#!"><i class="fab fa-instagram fa-lg"></i></a>
+            </div> -->
+  
+          </div>
+      
+</section>
+
+</body>
+
+{% endblock content%}
+<!-- designer profile ends here  -->

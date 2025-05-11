@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% include 'fn_app/common/common_css.html' %}
+</head>
+<body>
+    {% include 'fn_app/common/header.html' %}
+    <div class="row" style="margin-top: 5%;">
+
+{%for f in feedback_key%}
+        
+        <div class="col-4">
+          <div class="card">
+            <div class="card-body">
+              <h3 class="card-title">{{f.name}}</h3>
+              <p class="card-text">{{f.remarks}}</p>
+              <p class="card-text">{{f.rating}}</p>
+            </div>
+          </div>
+        </div>
+        
+{%endfor%}
+        </div>
+        {% include "fn_app/common/footer.html" %}
+</body>
+</html>
