@@ -2,78 +2,113 @@
 {% block content %}
 {% load static%}
    <style>
-  body {
-    background-color: #fdf8f0;
+    /* Base styles */
+body {
+  background-color: #fdf8f0;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
 }
 
+/* Container */
 .containerr {
-width: 800px;
-  height: 700px;
-    max-width: 600px;
-    margin: 30px auto ;
-    
-
+  width: 90%;
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
+/* Responsive row */
 .row {
-    display: flex;
-    flex-wrap: wrap;
-}
-.col-md-4 {
-    display: flex;
-    flex-direction: column;
-  
-
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
+/* Columns */
+.col-md-4,
+.col-md-8 {
+  width: 100%; /* Default: Full width on small screens */
+}
+
+/* Tablet and up */
 @media (min-width: 768px) {
-   .col-md-4 {
-        width: 31%;
-
-    }
-
-   .col-md-8 {
-        width: 69%;
-    }
+  .col-md-4 {
+    width: 31%;
+  }
+  .col-md-8 {
+    width: 69%;
+  }
 }
 
+/* Image styling */
 .img-fluid {
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 .rounded-circle {
-    border-radius: 50%;
-}
-.mm{
-  color: darkgray;
-  margin-bottom: 10px;
-  margin-left:4px ;
-  font-size: 1rem;
-  font-family:Poppins ;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-  text-transform: uppercase;
-}
-.mn{
-  margin-top: 10px;
-  margin-bottom: 40px;
-  height:47px ;
-}
-.bt{
-  color: darkgrey;
-  font-size: 30px;
-  margin: 0px 65px;
-}
-.rounded-circle {
-  width: 150px; /* adjust this value */
-  height: 150px; /* adjust this value */
-  object-fit: cover; /* or use contain, depending on your needs */
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
   border-radius: 50%;
   margin: 30px 10px;
 }
-.form-control {
-    background-color: darkgrey;
+
+/* Text styles */
+.mm {
+  color: darkgray;
+  margin-bottom: 10px;
+  margin-left: 4px;
+  font-size: 1rem;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
 }
+
+.mn {
+  margin-top: 10px;
+  margin-bottom: 40px;
+  height: 47px;
+}
+
+/* Icon buttons */
+.bt {
+  color: darkgrey;
+  font-size: 30px;
+  margin: 0 30px;
+  cursor: pointer;
+}
+
+/* Form inputs */
+.form-control {
+  width: 100%;
+  padding: 10px;
+  background-color: darkgrey;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+/* Responsive tweaks for very small screens */
+@media (max-width: 480px) {
+  .bt {
+    font-size: 24px;
+    margin: 0 15px;
+  }
+
+  .rounded-circle {
+    width: 100px;
+    height: 100px;
+    margin: 20px auto;
+  }
+
+  .mn {
+    height: auto;
+  }
+}
+
    </style>
 <!-- designer profile starts here  -->
 <body>
